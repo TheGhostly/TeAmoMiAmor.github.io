@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: './', // Cambiamos a ruta relativa
+  base: '/TeAmoMiAmor.github.io/', // Ajustamos a la ruta exacta del repositorio
 });
