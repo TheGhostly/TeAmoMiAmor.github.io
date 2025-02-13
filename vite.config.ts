@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: './', // Esto permite que los assets se carguen correctamente en GitHub Pages
+  base: '/TeAmoMiAmor.github.io/', // Ruta específica del repositorio
 });
