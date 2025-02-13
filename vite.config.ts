@@ -7,4 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  base: './', // Esto permite que los assets se carguen correctamente en GitHub Pages
 });
