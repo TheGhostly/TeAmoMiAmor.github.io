@@ -2,60 +2,52 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     color: #333;
-    text-align: left;
     margin: 0;
     padding: 0;
 }
 
-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent; /* Quitamos el fondo de color */
-}
-
-.contenedor-header {
-    display: flex;
-    align-items: center;
+/* Barra decorativa */
+.barra-decorativa {
     width: 100%;
-    justify-content: space-between;
+    height: 10px;
+    background-color: #ff6f61; /* Color de la barra */
+    margin-bottom: 20px; /* Espacio debajo de la barra */
 }
 
-.texto-header {
-    text-align: left;
+/* Contenedor principal */
+.contenedor-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Texto a la izquierda */
+.texto-izquierda {
+    max-width: 50%; /* Ancho máximo del texto */
 }
 
 h1 {
     font-size: 3.5em; /* Título grande */
     margin: 0;
+    color: #ff6f61; /* Color del título */
 }
 
 .subtitulo {
     font-size: 1.5em;
     margin-top: 10px;
+    color: #555; /* Color del subtítulo */
 }
 
-.imagen-header {
-    width: 300px; /* Ajusta el tamaño de la imagen grande */
+/* Imagen a la derecha */
+.imagen-derecha {
+    width: 40%; /* Ancho de la imagen */
     height: auto;
-    border-radius: 10px;
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
-/* Barra flotante */
-.barra-flotante {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff6f61;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 25px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 1.2em;
-}
-
+/* Galería de fotos */
 #galeria {
     padding: 20px;
 }
@@ -79,14 +71,17 @@ h1 {
     transform: scale(1.1);
 }
 
+/* Poema */
 #poema {
     background-color: #fff3e0;
     padding: 20px;
     margin: 20px 0;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
     padding: 10px;
+    text-align: center;
 }
