@@ -8,17 +8,51 @@ body {
 }
 
 header {
-    background-color: #ff6f61;
-    color: white;
     padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent; /* Quitamos el fondo de color */
+}
+
+.contenedor-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.texto-header {
+    text-align: left;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 3.5em; /* Título grande */
     margin: 0;
 }
 
-p {
+.subtitulo {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.imagen-header {
+    width: 300px; /* Ajusta el tamaño de la imagen grande */
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Barra flotante */
+.barra-flotante {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff6f61;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-size: 1.2em;
 }
 
