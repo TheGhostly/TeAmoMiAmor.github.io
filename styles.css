@@ -1,0 +1,31 @@
+.flex {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 0 20px; /* Agrega un margen a los lados de la galería */
+  }
+  
+  .image-card {
+    border: 1px solid #ccc;
+  }
+  
+  .image-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .bg-gray-300 {
+    background-color: #e2e8f0; /* Cambia el color de fondo */
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    display: flex; /* Permite centrar el contenido verticalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+  }
+  
+  .hover\:bg-gray-400:hover {
+    background-color: #cbd5e0; /* Cambia el color de fondo al pasar el mouse */
+  }

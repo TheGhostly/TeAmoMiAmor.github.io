@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dos Años Juntos</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .slide-enter {
+        animation: fadeInRight 0.5s ease-out forwards;
+      }
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .image-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .image-card:hover {
+        transform: scale(1.05);
+      }
+      .big-heart {
+        font-size: 5rem;
+      }
+      @media (min-width: 768px) {
+        .big-heart {
+          font-size: 7rem;
+        }
+      }
+      .gallery-container {
+        transition: transform 0.3s ease-in-out;
+      }
+      .hidden {
+        display: none;
+      }
+      .image-card img {
+        width: 400px;
+        height: 100%;
+        object-fit: contain;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        overflow-y: auto;
+      }
+      .modal.active {
+        display: flex;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .modal-content {
+        animation: fadeIn 0.3s ease-out;
+      }
+      #modalImage {
+        width: 100%;
+        height: 700px;
+        object-fit: contain;
+      }
+      .modal-heart {
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 4rem;
+        animation: float 3s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gradient-to-b from-pink-300 to-rose-300">
+      <!-- Hero Section -->
+      <header class="h-screen relative flex flex-col items-center justify-center text-center px-4">
+        <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style="background-image: url(images/fondo.jfif); background-size: 2000px 2000px;"
+      >
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+      </div>
+        
+        <div class="relative z-10 flex flex-col items-center">
+          <div class="big-heart text-rose-400 mb-1 animate-float">❤️</div>
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+            Dos Años Juntos...
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-200 mb-8">
+            Celebrando nuestro amor y todos los momentos especiales
+          </p>
+          <div class="flex items-center justify-center gap-2 text-rose-300">
+            <span></span>
+            <span class="text-lg">Eres el todo que llena cada rincon de mi alma mi principio, mi fin , y todo lo que existe en medio  </span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Photo Gallery -->
+      <section class="py-20 px-4 bg-white/80">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 flex items-center justify-center gap-2">
+            <span>📸</span>
+            Nuestros Momentos
+          </h2>
+          
+          <div class="relative">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 gallery-container" id="gallery">
+              <!-- Las imágenes se cargarán dinámicamente aquí -->
+            </div>
+
+            <div class="flex justify-center gap-4 mt-8">
+              <button
+                onclick="previousImages()"
+                id="prevButton"
+                class="p-2 rounded-full bg-rose-500 text-white hover:bg-rose-600 transition-colors duration-200 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
+              >
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+              </button>
+              <button
+                onclick="nextImages()"
+                id="nextButton"
+                class="p-2 rounded-full bg-rose-500 text-white hover:bg-rose-600 transition-colors duration-200 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
+              >
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Message Section -->
+      <section class="py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="text-4xl mb-8">💝</div>
+          <p class="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+            "Dos años de risas, aventuras y amor incondicional. Cada momento a tu lado
+            ha sido un regalo, y no puedo esperar para crear más recuerdos juntos.
+            Gracias por ser mi compañera perfecta en este viaje llamado vida... Como ultima cosa ...  mira hacia atras."
+          </p>
+          <div class="flex items-center justify-center gap-10">
+            <span></span>
+            <span class="text-gray-100">Con mucho amor 💝 Samuel</span>
+          </div>
+        </div>
+      </section>
+
+          <!-- Modal -->
+    <div id="imageModal" class="modal">
+      <div class="modal-content w-full min-h-screen p-4 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-7xl overflow-hidden">
+          <div class="flex justify-end p-4">
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+              <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+          </div>
+          <div class="flex flex-col md:flex-row p-4 gap-8">
+            <div class="w-full md:w-1/2">
+              <img id="modalImage" src="" alt="Imagen ampliada" class="w-full h-[600px] object-cover rounded-lg">
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center">
+              <div class="modal-heart">💝</div>
+              <p id="modalPoem" class="text-xl text-gray-700 leading-relaxed italic text-center whitespace-pre-line mt-17"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <script>
+        const poems = [
+          "Es dificil amar.\nTan dificl como sentir que alguien te ama.\nTan dificil como demostrarlo sin palabras.\nAmor, amar es un desafio.\npero aun asi, puedo amarte.\n\nPuedo decirte que sin ti la vida se detiene,\n que todo pierde sentido cuando no estas,\n que me pierdo en el abismo de no tenerte, y despierto soñando con el calor de tu cuerpo.\n\nMiro al cielo y encuentro tus ojos en el firmamento,\ntu nombre resuena y me invade la emocion\ny cada vez pienso,\nsiento que me falta el aire en cada verso.\n\nMi mente se llena de recuerdos en tu ausencia,\ny ya no basta con un simple * te amo *.\nEse sentimiento, aunque inmmenso, se queda pequeño.\nEres mas que todas estas palabras,\nmas que el eco de este amor que me desborda.\n\nEres todo lo que llena cada rincon de mi alma,\nmi principio, mi fin y todo o que existe en medio",
+          "Como pétalos de rosa al viento,\nNuestro amor crece cada momento.\nDos años de historias por contar,\nY una vida entera por disfrutar.",
+          "En el lienzo de nuestra historia,\nPintamos juntos cada memoria.\nDos años de colores y emociones,\nDe risas, besos y canciones.",
+          "Mirarte a los ojos se convirtio en mi mas lindo pasatiempo.\nTus lindos ojos tienen un brillo que ni el mas puro lucero podra igualar.\nUnos ojos profundos en los que amo perderme,\ntus lindos ojos son capaces de ver lo mas profundo de mi ser,\nesos ojos bellos son dignos de nunca dejar de admirar.",
+          "Podre tener la peor memoria.\nPero nunca olvidare el dia que empece a hablar contigo Anny.\nsin saber que te amaria tanto,\nque llegarias a ser lo mas hermoso de mi vida\nMi mayor felicidad..",
+          "Eres capaz de estremecer mi cuerpo sin siquiera tocarlo,\nerizas mi piel y aceleras mi corazon con tal solo escuchar tu voz,\neres capaz de que escuche tu voz incluso en la distancia,\neres capaz de hacerme verte sin siquiera tenerte de frente,\neres capaz de hacer florecer lo mas bello en las partes mas aridas en mi interior eres capaz de eso y muchas cosas mas mi amor."
+        ];
+  
+        const images = Array.from({ length: 6 }, (_, i) => ({
+          url: `./images/${i + 1}.jfif`,
+          poem: poems[i]
+        }));
+  
+        let currentIndex = 0;
+        const imagesPerPage = 3;
+        const galleryContainer = document.getElementById('gallery');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalPoem = document.getElementById('modalPoem');
+  
+        function createImageCard(image, index) {
+          return `
+            <div class="image-card rounded-lg overflow-hidden shadow-lg" onclick="openModal(${currentIndex + index})">
+              <img
+                src="${image.url}"
+                alt="Momento especial"
+                class="w-full object-cover"
+              />
+            </div>
+          `;
+        }
+  
+        function updateGallery() {
+          const visibleImages = images.slice(currentIndex, currentIndex + imagesPerPage);
+          galleryContainer.innerHTML = visibleImages.map((image, index) => createImageCard(image, index)).join('');
+          
+          prevButton.disabled = currentIndex === 0;
+          nextButton.disabled = currentIndex >= images.length - imagesPerPage;
+        }
+  
+        function nextImages() {
+          if (currentIndex < images.length - imagesPerPage) {
+            currentIndex += imagesPerPage;
+            updateGallery();
+          }
+        }
+  
+        function previousImages() {
+          if (currentIndex > 0) {
+            currentIndex -= imagesPerPage;
+            updateGallery();
+          }
+        }
+  
+        function openModal(index) {
+          const image = images[index];
+          modalImage.src = image.url;
+          modalPoem.innerText = image.poem;
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+  
+        function closeModal() {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+  
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+  
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeModal();
+          }
+        });
+  
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', () => {
+          updateGallery();
+          lucide.createIcons();
+        });
+      </script>
+    </body>
+  </html>
